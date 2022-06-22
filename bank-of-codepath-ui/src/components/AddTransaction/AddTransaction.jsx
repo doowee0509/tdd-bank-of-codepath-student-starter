@@ -10,7 +10,10 @@ export default function AddTransaction(props) {
     <div className="add-transaction">
       <h2>Add Transaction</h2>
 
-      <AddTransactionForm handleOnFormFieldChange={handleOnFormFieldChange} handleOnSubmit={props.handleOnSubmit} form={props.form} isCreating={props.isCreating}/>
+      <AddTransactionForm 
+      handleOnFormFieldChange={handleOnFormFieldChange} 
+      handleOnSubmit={props.handleOnSubmit} 
+      form={props.form} isCreating={props.isCreating}/>
     </div>
   )
 }

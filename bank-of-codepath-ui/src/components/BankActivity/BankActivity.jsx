@@ -4,7 +4,6 @@ import "./BankActivity.css"
 import { Link } from "react-router-dom"
 
 export default function BankActivity(props) {
-  console.log(props.transfers)
   return (
     <div className="bank-activity">
       <h2>Transactions</h2>
@@ -38,32 +37,28 @@ export default function BankActivity(props) {
 
 export function TransactionRow({ transaction = {}}) {
   return (
-    <Link to={`/transactions/${transaction.id}`}>
-      <div className="table-row transaction-row">
-        <span className="col x4">
-          <Arrow amount={transaction.amount} />
-          {transaction.description}
-        </span>
-        <span className="col x2">{transaction.category}</span>
-        <span className="col x2">{formatAmount(transaction.amount)}</span>
-        <span className="col x15">{formatDate(transaction.postedAt)}</span>
-      </div>
-    </Link>
+        <Link className="table-row transaction-row" to={`/transactions/${transaction.id}`}>
+          <span className="col x4">
+            <Arrow amount={transaction.amount} />
+            {transaction.description}
+          </span>
+          <span className="col x2">{transaction.category}</span>
+          <span className="col x2">{formatAmount(transaction.amount)}</span>
+          <span className="col x15">{formatDate(transaction.postedAt)}</span>
+        </Link>
   )
 }
 
 export function TransferRow({ transfer = {} }) {
   return (
-    <Link to={`/transfers/${transfer.id}`}>
-      <div className="table-row transfer-row">
-        <span className="col x4">
-          <Arrow amount={transfer.amount} />
-          {transfer.memo}
-        </span>
-        <span className="col x2">{transfer.recipientEmail}</span>
-        <span className="col x2">{formatAmount(transfer.amount)}</span>
-        <span className="col x15">{formatDate(transfer.postedAt)}</span>
-      </div>
+    <Link className="table-row transfer-row" to={`/transfers/${transfer.id}`}>
+      <span className="col x4">
+        <Arrow amount={transfer.amount} />
+        {transfer.memo}
+      </span>
+      <span className="col x2">{transfer.recipientEmail}</span>
+      <span className="col x2">{formatAmount(transfer.amount)}</span>
+      <span className="col x15">{formatDate(transfer.postedAt)}</span>
     </Link>
   )
 }

@@ -26,7 +26,6 @@ export default function TransactionDetail() {
         }
       } catch (err) {
         setError(err)
-        console.log(err)
       } finally {
         setIsLoading(false)
         setHasFetched(true)
@@ -37,18 +36,18 @@ export default function TransactionDetail() {
 
   return (
     <div className="transaction-detail">
-      <TransactionCard transaction={transaction} transactionId={transactionId} error={error}/>
+      <TransactionCard transaction={transaction} transactionId={transactionId} hasFetched={hasFetched}/>
     </div>
   )
 }
 
-export function TransactionCard({ transaction = {}, transactionId = null , error}) {
+export function TransactionCard({ transaction = {}, transactionId = null, hasFetched}) {
+  console.log(transaction)
   return (
     <div className="transaction-card card">
       <div className="card-header">
         <h3>Transaction #{transactionId}</h3>
-        {/* {error ? <h1>Not Found</h1> : null} */}
-        <h1>Not Found</h1>
+        {Object.keys(transaction).length === 0 && hasFetched  === true ? <h1>Not Found</h1> : null}
         <p className="category">{transaction.category}</p>
       </div>
 

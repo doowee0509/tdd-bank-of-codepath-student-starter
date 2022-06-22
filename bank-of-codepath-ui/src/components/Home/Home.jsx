@@ -27,7 +27,6 @@ const handleOnCreateTransaction = async() => {
   })
   .then(res => {
     props.setTransactions((prevTransactions) => [...prevTransactions, res?.data?.transaction])
-    console.log(res.data.transaction)
   })
   .finally(() => {
     props.setNewTransactionForm({
@@ -36,7 +35,6 @@ const handleOnCreateTransaction = async() => {
       amount: 0
     })
     props.setIsCreating(false)
-    console.log(props.transactions)
   })
 }
 
@@ -78,7 +76,6 @@ useEffect(() => {
       const transfersResult = await axios.get("http://localhost:3001/bank/transfers")
       if (transfersResult?.data?.transfers) {
         props.setTransfers(transfersResult.data.transfers)
-        console.log(transfersResult.data)
       }
 
     } catch (err) {
@@ -94,7 +91,12 @@ useEffect(() => {
 
   return (
     <div className="home">
-      <AddTransaction isCreating={props.isCreating} setIsCreating={props.setIsCreating} form={props.newTransactionForm} setForm={props.setNewTransactionForm} handleOnSubmit={handleOnCreateTransaction}/>
+      <AddTransaction 
+      isCreating={props.isCreating}
+      setIsCreating={props.setIsCreating} 
+      form={props.newTransactionForm} 
+      setForm={props.setNewTransactionForm} 
+      handleOnSubmit={handleOnCreateTransaction}/>
       <AddTransfer isCreating={props.isCreating} setIsCreating={props.setIsCreating} form={props.newTransferForm} setForm={props.setNewTransferForm} handleOnSubmit={handleOnCreateTransfer} fieldError={fieldError} setFieldError={setFieldError}/>
       {props.isLoading ? (<h1>Loading...</h1>) : (<BankActivity transactions={filteredTransactions} transfers={props.transfers}/>)}
       {props.error ? <h2 className="error">Error message</h2> : null}

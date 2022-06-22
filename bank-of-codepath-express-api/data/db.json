@@ -20,6 +20,20 @@
       "memo": "asdf",
       "recipientEmail": "asdf",
       "amount": 0
+    },
+    {
+      "id": 4,
+      "postedAt": "2022-06-22T23:06:29.449Z",
+      "memo": "adsf",
+      "recipientEmail": "asdf",
+      "amount": "1000"
+    },
+    {
+      "id": 5,
+      "postedAt": "2022-06-22T23:14:25.881Z",
+      "memo": "asdf",
+      "recipientEmail": "asdf",
+      "amount": "10000"
     }
   ],
   "transactions": [
@@ -64,6 +78,13 @@
       "description": "hey",
       "category": "hi",
       "amount": 20
+    },
+    {
+      "id": 7,
+      "postedAt": "2022-06-22T23:06:22.285Z",
+      "category": "Fashion",
+      "description": "New transaction",
+      "amount": "10000000"
     }
   ]
 }

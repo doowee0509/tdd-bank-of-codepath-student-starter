@@ -37,18 +37,17 @@ export default function TransactionDetail() {
 
   return (
     <div className="transfer-detail">
-      <TransferCard transfer={transfer} transferId={transferId} error={error}/>
+      <TransferCard transfer={transfer} transferId={transferId} hasFetched={hasFetched}/>
     </div>
   )
 }
 
-export function TransferCard({ transfer = {}, transferId = null , error}) {
+export function TransferCard({ transfer = {}, transferId = null , hasFetched}) {
   return (
     <div className="transfer-card card">
       <div className="card-header">
         <h3>Transfer #{transferId}</h3>
-        {/* {error ? <h1>Not Found</h1> : null} */}
-        <h1>Not Found</h1>
+        {Object.keys(transfer).length === 0 && hasFetched  === true ? <h1>Not Found</h1> : null}
         <p className="category">{transfer.category}</p>
       </div>
 
