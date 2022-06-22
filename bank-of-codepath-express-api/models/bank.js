@@ -64,7 +64,7 @@ class Bank {
     }
     const requiredFields = ["recipientEmail", "memo", "amount"]
     requiredFields.forEach((field) => {
-      if (!transfer[field] && transaction[field] !== 0) {
+      if (!transfer[field] && transfer[field] !== 0) {
         throw new BadRequestError(`Field: "${field}" is required in transfer`)
       }
     })

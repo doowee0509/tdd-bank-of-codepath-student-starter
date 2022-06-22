@@ -6,6 +6,20 @@
       "recipientEmail": "landlord@gmail.com",
       "memo": "rent payment",
       "amount": -99999.99
+    },
+    {
+      "id": 2,
+      "postedAt": "2022-06-22T19:54:45.527Z",
+      "memo": "duy",
+      "recipientEmail": "duy",
+      "amount": 0
+    },
+    {
+      "id": 3,
+      "postedAt": "2022-06-22T20:06:02.060Z",
+      "memo": "asdf",
+      "recipientEmail": "asdf",
+      "amount": 0
     }
   ],
   "transactions": [
@@ -43,6 +57,13 @@
       "amount": "100",
       "description": "Something cool",
       "category": "Income"
+    },
+    {
+      "id": 6,
+      "postedAt": "2022-06-22T20:18:02.852Z",
+      "description": "hey",
+      "category": "hi",
+      "amount": 20
     }
   ]
 }

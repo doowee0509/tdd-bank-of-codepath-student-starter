@@ -1,25 +1,59 @@
 import * as React from "react"
 import { formatAmount, formatDate } from "../../utils/format"
 import "./TransactionDetail.css"
+import { useParams } from "react-router-dom"
+import axios from "axios"
+
 
 export default function TransactionDetail() {
+  const [hasFetched, setHasFetched] = React.useState(false)
+  const [transaction, setTransaction] = React.useState({})
+  const [isLoading, setIsLoading] = React.useState(false)
+  const [error, setError] = React.useState(null)
+
+  const transactionId = useParams()?.transactionId
+
+  React.useEffect(() => {
+    const fetchTransactionById = async () => {
+      setIsLoading(true)
+      if(!transactionId) {
+        return;
+      }
+      try {
+        const result = await axios.get(`http://localhost:3001/bank/transactions/${transactionId}`)
+        if (result?.data?.transaction) {
+          setTransaction(result.data.transaction)
+        }
+      } catch (err) {
+        setError(err)
+        console.log(err)
+      } finally {
+        setIsLoading(false)
+        setHasFetched(true)
+      }
+    }
+    fetchTransactionById()
+  }, [transactionId])
+
   return (
     <div className="transaction-detail">
-      <TransactionCard />
+      <TransactionCard transaction={transaction} transactionId={transactionId} error={error}/>
     </div>
   )
 }
 
-export function TransactionCard({ transaction = {}, transactionId = null }) {
+export function TransactionCard({ transaction = {}, transactionId = null , error}) {
   return (
     <div className="transaction-card card">
       <div className="card-header">
         <h3>Transaction #{transactionId}</h3>
-        <p className="category"></p>
+        {/* {error ? <h1>Not Found</h1> : null} */}
+        <h1>Not Found</h1>
+        <p className="category">{transaction.category}</p>
       </div>
 
       <div className="card-content">
-        <p className="description"></p>
+        <p className="description">{transaction.description}</p>
       </div>
 
       <div className="card-footer">

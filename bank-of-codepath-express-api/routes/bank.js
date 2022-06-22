@@ -55,6 +55,7 @@ router.post("/transfers", async (req, res, next) => {
     const newTransfer = await Bank.recordTransfer(transfer)
     res.status(201).json({ transfer: newTransfer })
   } catch (err) {
+    console.log(err)
     next(err)
   }
 })
